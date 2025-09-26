@@ -1,15 +1,24 @@
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
 import { WidgetItem } from "@/components";
-import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: 'Dashboard Page',
-  description: 'Dashboard'
-}
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect('/api/auth/signin');
+  }
+
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      <WidgetItem />
+      <WidgetItem title="Usuario conectado S-Side">
+       
+        <div>{session.user?.name}</div>
+        <div>{session.user?.email}</div>
+        <div>{session.user?.image}</div>
+      </WidgetItem>
     </div>
   );
 }
