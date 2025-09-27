@@ -29,6 +29,8 @@ model User {
   email         String          @unique
   emailVerified DateTime?
   image         String?
+  roles         String[]        @default(["user"])
+  isActive      Boolean         @default(true)
   accounts      Account[]
   sessions      Session[]
   // Optional for WebAuthn support

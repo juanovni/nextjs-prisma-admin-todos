@@ -14,10 +14,11 @@ export default async function DashboardPage() {
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       <WidgetItem title="Usuario conectado S-Side">
-       
         <div>{session.user?.name}</div>
         <div>{session.user?.email}</div>
         <div>{session.user?.image}</div>
+        <div>{session.user?.roles?.join(',')}</div>
+        <div>{session.user?.id}</div>
       </WidgetItem>
     </div>
   );
