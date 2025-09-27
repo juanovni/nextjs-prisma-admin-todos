@@ -10,8 +10,6 @@ export const getUserSessionServer = async () => {
   return session?.user;
 }
 
-
-
 export const signInEmailPassword = async (email: string, password: string) => {
 
   if (!email || !password) return null;
